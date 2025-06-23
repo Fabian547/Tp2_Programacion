@@ -1,12 +1,11 @@
-import { useState } from "react"
-import useTarea  from "../hooks/useTarea"
+import useTarea  from '../hooks/useTarea'
 
 export default function Formulario({guardarTarea}){
     
     const [datos,setDato,limpiarForm] = useTarea();
     const mostrarValores = (e) =>{
         e.preventDefault();
-        if (!datos.nombre || !datos.categoria || !datos.prioridad || !datos.rol){
+        if (!datos.nombre || !datos.categoria || !datos.prioridad){
             alert("Faltan campos para completar, porfavor complete todos");
         } else {
             const tarea = datos;
