@@ -1,40 +1,22 @@
-function Tarjeta({nombre,categoria,prioridad,estado, eliminar}){
-    return(
-        <div className="Tarjeta"
-            style={{backgroundColor: rol === 'alumno' ? "lightblue" : "lightcoral"}}
-        >
-            <span className="Eliminar"
-            onClick={() => eliminar()}
-            >X</span>
-            <span>Nombre: {nombre}</span>
-            <span>categoria: {categoria}</span>
-            <span>prioridad: {prioridad}</span>
-            <span>estado: {estado}</span>
-        </div>
-    )
-}
+import Tarjeta from './Tarjeta';
 
-export default function Listado ({tareas, eliminarTareas}){
-    return(
-        <div className='Panel' style={{backgroundColor:"lightyellow"}}>
-            
-            <h3>Tareas</h3>
-
-            <div className="Listado">
-                
-                {tareas.map((tarea, index)=>
-                <Tarjeta 
-                    key={tarea.id}
-                    eliminar={() => eliminarTareas(tarea.id)}
-                    Nombre={tarea.Nombre}
-                    categoria={tarea.categoria}
-                    prioridad={tarea.prioridad}
-                    estado={tarea.estado}
-                    />
-                )}
-                
-            </div>
-            
-        </div>
-    );
+export default function Listado({ tareas, eliminarTareas, cambiarEstado }) {
+  return (
+    <div className="Panel" style={{ backgroundColor: "lightyellow" }}>
+      <h3>Tareas</h3>
+      <div className="Listado">
+        {tareas.map((tarea) => (
+          <Tarjeta
+            key={tarea.id}
+            nombre={tarea.nombre}
+            categoria={tarea.categoria}
+            prioridad={tarea.prioridad}
+            estado={tarea.estado}
+            eliminar={() => eliminarTareas(tarea.id)}
+            onCambiarEstado={(nuevoEstado) => cambiarEstado(tarea.id, nuevoEstado)}
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
